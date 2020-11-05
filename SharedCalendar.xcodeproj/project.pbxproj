@@ -13,6 +13,10 @@
 		176567802553456C0031D8E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1765677F2553456C0031D8E2 /* Assets.xcassets */; };
 		176567832553456C0031D8E2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176567822553456C0031D8E2 /* Preview Assets.xcassets */; };
 		176567862553456C0031D8E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176567842553456C0031D8E2 /* LaunchScreen.storyboard */; };
+		1765679125534AEE0031D8E2 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765679025534AEE0031D8E2 /* UserDefault.swift */; };
+		1765679825535CFB0031D8E2 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765679725535CFB0031D8E2 /* Appointment.swift */; };
+		1765679C255361C40031D8E2 /* AppointmentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765679B255361C40031D8E2 /* AppointmentStore.swift */; };
+		1765679F25545E2C0031D8E2 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765679E25545E2C0031D8E2 /* EventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		176567822553456C0031D8E2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		176567852553456C0031D8E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		176567872553456C0031D8E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1765679025534AEE0031D8E2 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		1765679725535CFB0031D8E2 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		1765679B255361C40031D8E2 /* AppointmentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentStore.swift; sourceTree = "<group>"; };
+		1765679E25545E2C0031D8E2 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,10 @@
 				176567792553456A0031D8E2 /* AppDelegate.swift */,
 				1765677B2553456A0031D8E2 /* SceneDelegate.swift */,
 				1765677D2553456A0031D8E2 /* ContentView.swift */,
+				1765679E25545E2C0031D8E2 /* EventView.swift */,
+				1765679725535CFB0031D8E2 /* Appointment.swift */,
+				1765679B255361C40031D8E2 /* AppointmentStore.swift */,
+				1765679025534AEE0031D8E2 /* UserDefault.swift */,
 				1765677F2553456C0031D8E2 /* Assets.xcassets */,
 				176567842553456C0031D8E2 /* LaunchScreen.storyboard */,
 				176567872553456C0031D8E2 /* Info.plist */,
@@ -145,9 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1765679125534AEE0031D8E2 /* UserDefault.swift in Sources */,
+				1765679F25545E2C0031D8E2 /* EventView.swift in Sources */,
 				1765677A2553456A0031D8E2 /* AppDelegate.swift in Sources */,
 				1765677C2553456A0031D8E2 /* SceneDelegate.swift in Sources */,
+				1765679C255361C40031D8E2 /* AppointmentStore.swift in Sources */,
 				1765677E2553456A0031D8E2 /* ContentView.swift in Sources */,
+				1765679825535CFB0031D8E2 /* Appointment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +304,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SharedCalendar/Preview Content\"";
+				DEVELOPMENT_TEAM = P8CC95REUG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SharedCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -308,6 +325,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SharedCalendar/Preview Content\"";
+				DEVELOPMENT_TEAM = P8CC95REUG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SharedCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
