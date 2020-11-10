@@ -34,6 +34,7 @@
 		1765679B255361C40031D8E2 /* AppointmentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentStore.swift; sourceTree = "<group>"; };
 		1765679E25545E2C0031D8E2 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		176DC728255974B600FC1325 /* CalendarChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarChooser.swift; sourceTree = "<group>"; };
+		17844718255AFB130022FBBF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +51,7 @@
 		1765676D2553456A0031D8E2 = {
 			isa = PBXGroup;
 			children = (
+				17844718255AFB130022FBBF /* README.md */,
 				176567782553456A0031D8E2 /* SharedCalendar */,
 				176567772553456A0031D8E2 /* Products */,
 			);
