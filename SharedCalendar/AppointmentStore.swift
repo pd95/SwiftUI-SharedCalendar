@@ -17,12 +17,16 @@ class AppointmentStore: ObservableObject {
     var store = EKEventStore()
     var calendarAccessible = false
 
-    static let constMyCalendarName = "Appointments"
-
     @UserDefault(key: "calendarIdentifier", defaultValue: "")
     private var calendarIdentifier: String
 
-    var calendar: EKCalendar?
+    @Published var calendar: EKCalendar? {
+        didSet {
+            calendarIdentifier = calendar?.calendarIdentifier ?? ""
+            fetchAppointments()
+        }
+    }
+    @Published var error: Error?
 
     @Published var appointments = [Appointment]()
 
@@ -30,6 +34,9 @@ class AppointmentStore: ObservableObject {
         store.requestAccess(to: .event) { (success, error) in
             if let error = error {
                 print("Error requesting access: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.error = error
+                }
             }
             else {
                 print("Request granted: \(success)")
@@ -40,38 +47,14 @@ class AppointmentStore: ObservableObject {
                 if !identifier.isEmpty {
                     print("Existing calendar: \(identifier)")
                     if let calendar = self.store.calendar(withIdentifier: identifier) {
-                        self.calendar = calendar
                         print("Calendar loaded: \(calendar)")
+                        DispatchQueue.main.async {
+                            self.calendar = calendar
+                        }
                     }
                     else {
                         print("🔴 Calendar not loaded!!")
                     }
-                }
-                if self.calendar == nil {
-                    // Get sources for calendar
-                    for source in self.store.sources {
-                        print(source)
-                    }
-
-                    let localSource = self.store.sources.first(where: { $0.sourceType == .local }) ?? self.store.sources.first!
-
-                    // Create local calendar
-                    let newCalendar = EKCalendar(for: .event, eventStore: self.store)
-                    newCalendar.title = "Client Appointments"
-                    newCalendar.source = localSource
-                    self.calendarIdentifier = newCalendar.calendarIdentifier
-                    self.calendar = newCalendar
-                    print("🟡 New calendar created: \(newCalendar)")
-                    do {
-                        try self.store.saveCalendar(newCalendar, commit: true)
-                    } catch {
-                        print("🔴 Exception occurred: \(error.localizedDescription)")
-                        print("do something, please!")
-                    }
-                }
-
-                if self.calendar != nil {
-                    self.fetchAppointments()
                 }
             }
         }
@@ -79,16 +62,18 @@ class AppointmentStore: ObservableObject {
 
     func fetchAppointments() {
         guard let calendar = calendar else {
-            fatalError("Calendar should have been initialized")
+            return
         }
-        let startDate = Calendar.current.startOfDay(for: Date())
-        let endDate = Calendar.current.date(byAdding: DateComponents(day: 365), to: startDate)!
-        let predicate = store.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
+        DispatchQueue.global(qos: .userInitiated).async {
+            let startDate = Calendar.current.startOfDay(for: Date())
+            let endDate = Calendar.current.date(byAdding: DateComponents(day: 365), to: startDate)!
+            let predicate = self.store.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendar])
 
-        let events = store.events(matching: predicate)
+            let events = self.store.events(matching: predicate)
 
-        DispatchQueue.main.async {
-            self.appointments = events.map(\.appointment)
+            DispatchQueue.main.async {
+                self.appointments = events.map(\.appointment)
+            }
         }
     }
 

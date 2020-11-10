@@ -17,6 +17,7 @@
 		1765679825535CFB0031D8E2 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765679725535CFB0031D8E2 /* Appointment.swift */; };
 		1765679C255361C40031D8E2 /* AppointmentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765679B255361C40031D8E2 /* AppointmentStore.swift */; };
 		1765679F25545E2C0031D8E2 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765679E25545E2C0031D8E2 /* EventView.swift */; };
+		176DC729255974B600FC1325 /* CalendarChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176DC728255974B600FC1325 /* CalendarChooser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1765679725535CFB0031D8E2 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		1765679B255361C40031D8E2 /* AppointmentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentStore.swift; sourceTree = "<group>"; };
 		1765679E25545E2C0031D8E2 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		176DC728255974B600FC1325 /* CalendarChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarChooser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				1765677B2553456A0031D8E2 /* SceneDelegate.swift */,
 				1765677D2553456A0031D8E2 /* ContentView.swift */,
 				1765679E25545E2C0031D8E2 /* EventView.swift */,
+				176DC728255974B600FC1325 /* CalendarChooser.swift */,
 				1765679725535CFB0031D8E2 /* Appointment.swift */,
 				1765679B255361C40031D8E2 /* AppointmentStore.swift */,
 				1765679025534AEE0031D8E2 /* UserDefault.swift */,
@@ -162,6 +165,7 @@
 				1765677A2553456A0031D8E2 /* AppDelegate.swift in Sources */,
 				1765677C2553456A0031D8E2 /* SceneDelegate.swift in Sources */,
 				1765679C255361C40031D8E2 /* AppointmentStore.swift in Sources */,
+				176DC729255974B600FC1325 /* CalendarChooser.swift in Sources */,
 				1765677E2553456A0031D8E2 /* ContentView.swift in Sources */,
 				1765679825535CFB0031D8E2 /* Appointment.swift in Sources */,
 			);

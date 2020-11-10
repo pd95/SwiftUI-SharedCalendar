@@ -9,8 +9,6 @@ import SwiftUI
 import EventKitUI
 
 struct EventView: UIViewControllerRepresentable {
-    typealias UIViewControllerType = UINavigationController
-
     let event: EKEvent
 
     let completion: (EKEventViewAction) -> Void

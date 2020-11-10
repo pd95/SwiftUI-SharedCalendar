@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EventKit
 import EventKitUI
 
 extension UIApplication {
@@ -18,6 +19,7 @@ struct ContentView: View {
 
     @StateObject private var store = AppointmentStore()
 
+    @State private var chooseCalendar = false
     @State private var title = ""
     @State private var startDate = Date().addingTimeInterval(10000)
     @State private var duration = 60
@@ -32,6 +34,43 @@ struct ContentView: View {
 
     var body: some View {
         Form {
+            Section(header: Text("Calendar")) {
+                Button(
+                    action: {
+                        chooseCalendar.toggle()
+                    },
+                    label: {
+                        if let calendar = store.calendar {
+                            Text(calendar.title)
+                        }
+                        else {
+                            Text("Choose Calendar")
+                        }
+                    }
+                )
+                .sheet(isPresented: $chooseCalendar, content: {
+                    CalendarChooser(
+                        eventStore: store.store,
+                        calendars: Binding(get: {
+                            if let calendar = store.calendar {
+                                return Set([calendar])
+                            }
+                            return Set([])
+                        }, set: { (calendars: Set<EKCalendar>?) in
+                            if let calendars = calendars {
+                                store.calendar = calendars.first
+                            }
+                            else {
+                                store.calendar = nil
+                            }
+                        }),
+                        selectionStyle: .single,
+                        displayStyle: .writableCalendarsOnly
+                    )
+                    .edgesIgnoringSafeArea(.all)
+                })
+            }
+
             Section(header: Text("New appointment:")) {
                 TextField("Title", text: $title)
                 DatePicker("Start", selection: $startDate, in: Calendar.current.startOfDay(for: Date())...)
@@ -44,6 +83,7 @@ struct ContentView: View {
                 }
                 .disabled(title.isEmpty || startDate<Calendar.current.startOfDay(for: Date()))
             }
+            .disabled(store.calendar == nil)
 
             Section(header: Text("Upcoming appointments")) {
                 List(store.appointments) { appointment in
@@ -71,7 +111,6 @@ struct ContentView: View {
             store.prepare()
         }
     }
-
 }
 
 
@@ -84,13 +123,12 @@ struct AppointmentView: View {
     var body: some View {
         if let event = store.event(forAppointment: appointment) {
             EventView(event: event) { (action) in
-                print("Action: \(action)")
                 presentationMode.wrappedValue.dismiss()
+                if action == .deleted {
+                    store.fetchAppointments()
+                }
             }
-            .onDisappear() {
-                store.fetchAppointments()
-            }
-            .navigationBarTitle("", displayMode: .inline)
+            .edgesIgnoringSafeArea(.all)
         }
         else {
             EmptyView()
